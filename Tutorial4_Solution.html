@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> Database </title>
+
+     <link rel="stylesheet" type="text/css" href="styles.css">
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    </head>
+    <body>
+        <table id="myTable">
+            <tr>
+                <th>Firstname</th>
+                <th>Lastname</th> 
+                <th>Delete</th>
+            </tr>
+            <tr>
+                <td>Jill</td>
+                <td>Smith</td>
+                <td><button class="DeleteButton">Delete Row</button></td>
+            </tr>
+            <tr>
+                <td>Eve</td>
+                <td>Jackson</td>
+                <td><button class="DeleteButton">Delete Row</button></td>
+            </tr>
+            <tr>
+                <td>John</td>
+                <td>Doe</td>
+                <td><button class="DeleteButton">Delete Row</button></td>
+            </tr>
+        </table>
+        
+        <br/>
+        
+        <button id="insertRow">Insert new row</button>
+        
+        <script>
+            // Syntax: $(selector).on(event,childSelector,data,function,map)
+            // on() method attaches one or more event handlers for the selected elements and child elements.
+            // event and function are required. the rest are optional.
+            // childSelector: Specifies that the event handler should only be attached to the specified child elements, and not the selector itself.
+            $("#myTable").on('click', '.DeleteButton', function (){
+                //Syntax: $(selector).closest(filter)
+                // Return the first ancestor of the selected element
+                // Example: https://www.w3schools.com/jquery/tryit.asp?filename=tryjquery_traversing_closest
+                // remove(): removes the selected element, including all text and child nodes.
+                $(this).closest('tr').remove();
+            });
+            
+
+            $("#insertRow").click(function(){
+                var firstName = window.prompt("Enter first name:");
+                var lastName = window.prompt("Enter last name:");
+                var row = '<tr><td>' + firstName + '</td><td>' + lastName + '</td><td><button class="DeleteButton"> Delete Row</button></td></tr>';
+               
+                // Syntax: $(selector).append(content)
+                // Possible values for content are HTML elements, jQuery objects, DOM elements
+                $("#myTable").append(row);
+                $("tr:last-child").css("background-color", "yellow");  
+            });
+
+
+
+                $(":button").mouseenter(function(){
+                   $(this).css("background-color", "lightgray");
+                });
+
+
+
+                $(":button").mouseleave(function(){
+                   $(this).css("background-color", "transparent");
+                });
+           
+        </script>
+    </body>
+</html>
